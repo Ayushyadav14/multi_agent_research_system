@@ -6,11 +6,10 @@
 ![LangChain](https://img.shields.io/badge/LangChain-0.2+-green?style=for-the-badge&logo=chainlink&logoColor=white)
 ![Groq](https://img.shields.io/badge/Groq-LLaMA_3.3_70B-orange?style=for-the-badge)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.35+-red?style=for-the-badge&logo=streamlit&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)
 
 **A fully autonomous multi-agent AI system that searches the web, scrapes content, writes structured research reports, and critiques them — all in one pipeline.**
 
-🔗 **Live Demo:** [Add your Streamlit link here after deployment]
+🔗 **Live Demo:** [multiagentresearchsystem-4k4lzlhioy43pvc9awelbr.streamlit.app](https://multiagentresearchsystem-4k4lzlhioy43pvc9awelbr.streamlit.app/)
 
 </div>
 
@@ -24,8 +23,9 @@ Conducting in-depth research on any topic is time-consuming and fragmented — y
 
 ## 🎥 Demo
 
-> <img width="2398" height="1568" alt="image" src="https://github.com/user-attachments/assets/64d2a45a-d01f-4bfa-913a-c330fb610976" />
-
+<div align="center">
+  <img width="800" alt="ResearchMind Demo" src="https://github.com/user-attachments/assets/64d2a45a-d01f-4bfa-913a-c330fb610976" />
+</div>
 
 ---
 
@@ -77,7 +77,7 @@ User Input (Topic)
 | Layer | Technology |
 |---|---|
 | LLM | Llama 3.3 70B via Groq API (Free) |
-| Agent Framework | LangChain ReAct Agents + AgentExecutor |
+| Agent Framework | LangGraph ReAct Agents |
 | Pipeline | LCEL (LangChain Expression Language) with Runnables |
 | Web Search Tool | Tavily API |
 | Web Scraping Tool | BeautifulSoup4 + Requests |
@@ -95,7 +95,7 @@ multi_agent_research_system/
 ├── tools.py           # web_search (Tavily) and scrape_url (BeautifulSoup) tools
 ├── pipeline.py        # 4-step research pipeline orchestrator (CLI version)
 ├── app.py             # Streamlit web UI
-├── requirement.txt    # All dependencies
+├── requirements.txt   # All dependencies
 ├── .env               # API keys (not committed to GitHub)
 └── .gitignore         # Ignores .env and __pycache__
 ```
@@ -128,7 +128,7 @@ source .venv/bin/activate        # Mac/Linux
 ### 3. Install Dependencies
 
 ```bash
-pip install -r requirement.txt
+pip install -r requirements.txt
 ```
 
 ### 4. Set Up Environment Variables
@@ -204,6 +204,7 @@ langchain>=0.2.0
 langchain-core>=0.2.0
 langchain-community>=0.2.0
 langchain-groq>=0.1.0
+langgraph>=0.1.0
 tavily-python>=0.3.0
 beautifulsoup4>=4.12.0
 requests>=2.31.0
@@ -230,14 +231,7 @@ tenacity>=8.2.0
 
 **Ayush Yadav**
 - GitHub: [@Ayushyadav14](https://github.com/Ayushyadav14)
-- LinkedIn: [Add your LinkedIn link here]
 - Email: ayushy.in@gmail.com
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License — feel free to use, modify, and distribute.
 
 ---
 
