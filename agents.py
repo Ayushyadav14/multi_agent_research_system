@@ -1,6 +1,5 @@
 from langchain_groq import ChatGroq
-from langchain.agents import create_react_agent, AgentExecutor
-from langchain import hub
+from langgraph.prebuilt import create_react_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from tools import web_search, scrape_url
@@ -8,20 +7,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Model setup - Groq 
+# Model setup - Groq (FREE)
 llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
-
+ 
 # 1st agent
 def build_search_agent():
-    prompt = hub.pull("hwchase17/react")
-    agent = create_react_agent(llm, [web_search], prompt)
-    return AgentExecutor(agent=agent, tools=[web_search], verbose=True, handle_parsing_errors=True)
+    return create_react_agent(llm, [web_search])
 
 # 2nd agent
 def build_reader_agent():
-    prompt = hub.pull("hwchase17/react")
-    agent = create_react_agent(llm, [scrape_url], prompt)
-    return AgentExecutor(agent=agent, tools=[scrape_url], verbose=True, handle_parsing_errors=True)
+    return create_react_agent(llm, [scrape_url])
 
 # Writer chain
 writer_prompt = ChatPromptTemplate.from_messages([
