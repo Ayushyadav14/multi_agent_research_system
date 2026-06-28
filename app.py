@@ -13,7 +13,10 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
-html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; color: #e8e4dc; }
+html, body, [class*="css"] {
+    font-family: 'DM Sans', sans-serif;
+    color: #ffffff;
+}
 
 .stApp {
     background: #0a0a0f;
@@ -25,21 +28,26 @@ html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; color: #e8e4dc;
 #MainMenu, footer, header { visibility: hidden; }
 .block-container { padding: 2rem 3rem 4rem; max-width: 1200px; }
 
+/* ── Hero ── */
 .hero { text-align: center; padding: 3.5rem 0 2.5rem; }
 .hero-eyebrow {
-    font-family: 'DM Mono', monospace; font-size: 0.7rem; font-weight: 500;
-    letter-spacing: 0.25em; text-transform: uppercase; color: #ff8c32;
-    margin-bottom: 1rem; opacity: 0.9;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: #ff8c32; margin-bottom: 1rem;
 }
 .hero h1 {
-    font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem);
-    font-weight: 800; line-height: 1.0; letter-spacing: -0.03em;
-    color: #f0ebe0; margin: 0 0 1rem;
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800; line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: #ffffff; margin: 0 0 1rem;
 }
 .hero h1 span { color: #ff8c32; }
 .hero-sub {
-    font-size: 1.05rem; font-weight: 300; color: #a09890;
-    max-width: 520px; margin: 0 auto; line-height: 1.65;
+    font-size: 1.05rem; font-weight: 300;
+    color: #cccccc; max-width: 520px;
+    margin: 0 auto; line-height: 1.65;
 }
 
 .divider {
@@ -54,7 +62,7 @@ html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; color: #e8e4dc;
     border-radius: 16px; padding: 2rem 2.5rem; margin-bottom: 2rem;
 }
 
-/* ── Input box: white background, black text ── */
+/* ── Input: white background, black text ── */
 .stTextInput > div > div > input {
     background: #ffffff !important;
     border: 2px solid rgba(255,140,50,0.6) !important;
@@ -69,7 +77,7 @@ html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; color: #e8e4dc;
     box-shadow: 0 0 0 3px rgba(255,140,50,0.25) !important;
 }
 .stTextInput > div > div > input::placeholder {
-    color: #999999 !important;
+    color: #888888 !important;
     opacity: 1 !important;
 }
 .stTextInput > label {
@@ -84,88 +92,107 @@ html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; color: #e8e4dc;
 /* ── Button ── */
 .stButton > button {
     background: linear-gradient(135deg, #ff8c32 0%, #ff5a1a 100%) !important;
-    color: #0a0a0f !important;
+    color: #000000 !important;
     font-family: 'Syne', sans-serif !important;
-    font-weight: 700 !important;
-    font-size: 0.95rem !important;
-    border: none !important;
-    border-radius: 10px !important;
+    font-weight: 700 !important; font-size: 0.95rem !important;
+    border: none !important; border-radius: 10px !important;
     padding: 0.7rem 2.2rem !important;
     box-shadow: 0 4px 20px rgba(255,140,50,0.3) !important;
     width: 100%;
 }
-.stButton > button:hover {
-    transform: translateY(-2px) !important;
-    opacity: 0.95 !important;
-}
+.stButton > button:hover { transform: translateY(-2px) !important; opacity: 0.95 !important; }
 
 /* ── Step cards ── */
 .step-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
     border-radius: 14px; padding: 1.5rem 1.8rem;
     margin-bottom: 1.2rem; position: relative; overflow: hidden;
 }
-.step-card.active { border-color: rgba(255,140,50,0.4); background: rgba(255,140,50,0.04); }
-.step-card.done   { border-color: rgba(80,200,120,0.3); background: rgba(80,200,120,0.03); }
+.step-card.active { border-color: rgba(255,140,50,0.6); background: rgba(255,140,50,0.08); }
+.step-card.done   { border-color: rgba(80,200,120,0.5); background: rgba(80,200,120,0.06); }
 .step-card::before {
     content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
-    border-radius:14px 0 0 14px; background:rgba(255,255,255,0.05);
+    border-radius:14px 0 0 14px; background:rgba(255,255,255,0.08);
 }
 .step-card.active::before { background: #ff8c32; }
 .step-card.done::before   { background: #50c878; }
 
-.step-header { display:flex; align-items:center; gap:0.8rem; margin-bottom:0.3rem; }
-.step-num   { font-family:'DM Mono',monospace; font-size:0.68rem; color:#ff8c32; opacity:0.7; }
-.step-title { font-family:'Syne',sans-serif; font-size:0.95rem; font-weight:700; color:#f0ebe0; }
-.step-status { margin-left:auto; font-family:'DM Mono',monospace; font-size:0.68rem; }
-.status-waiting { color: #555; }
+.step-header { display:flex; align-items:center; gap:0.8rem; margin-bottom:0.4rem; }
+.step-num    { font-family:'DM Mono',monospace; font-size:0.7rem; color:#ff8c32; font-weight:600; }
+.step-title  { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:#ffffff; }
+.step-desc   { font-size:0.85rem; color:#aaaaaa; margin-top:0.2rem; }
+.step-status { margin-left:auto; font-family:'DM Mono',monospace; font-size:0.7rem; font-weight:600; }
+.status-waiting { color: #666666; }
 .status-running { color: #ff8c32; }
 .status-done    { color: #50c878; }
 
 /* ── Result panels ── */
 .result-panel {
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 14px; padding: 1.8rem 2rem;
     margin-top: 1rem; margin-bottom: 1.5rem;
 }
 .result-panel-title {
-    font-family:'DM Mono',monospace; font-size:0.7rem;
+    font-family:'DM Mono',monospace; font-size:0.72rem;
     letter-spacing:0.2em; text-transform:uppercase; color:#ff8c32;
     margin-bottom:1rem; padding-bottom:0.7rem;
-    border-bottom:1px solid rgba(255,140,50,0.15);
+    border-bottom:1px solid rgba(255,140,50,0.2);
 }
 .result-content {
-    font-size:0.92rem; line-height:1.8; color:#cdc8bf;
-    white-space:pre-wrap; font-family:'DM Sans',sans-serif;
+    font-size:0.92rem; line-height:1.8;
+    color:#dddddd; white-space:pre-wrap;
 }
 
+/* ── Report & Feedback panels ── */
 .report-panel {
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,140,50,0.2);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,140,50,0.3);
     border-radius: 16px; padding: 2rem 2.5rem; margin-top: 1rem;
 }
 .feedback-panel {
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(80,200,120,0.2);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(80,200,120,0.3);
     border-radius: 16px; padding: 2rem 2.5rem; margin-top: 1rem;
 }
 .panel-label {
-    font-family:'DM Mono',monospace; font-size:0.7rem;
+    font-family:'DM Mono',monospace; font-size:0.72rem;
     letter-spacing:0.2em; text-transform:uppercase;
-    margin-bottom:1.2rem; padding-bottom:0.7rem;
+    margin-bottom:1.2rem; padding-bottom:0.7rem; font-weight:600;
 }
-.panel-label.orange { color:#ff8c32; border-bottom:1px solid rgba(255,140,50,0.15); }
-.panel-label.green  { color:#50c878; border-bottom:1px solid rgba(80,200,120,0.15); }
+.panel-label.orange { color:#ff8c32; border-bottom:1px solid rgba(255,140,50,0.2); }
+.panel-label.green  { color:#50c878; border-bottom:1px solid rgba(80,200,120,0.2); }
 
-.section-heading {
-    font-family:'Syne',sans-serif; font-size:1.3rem;
-    font-weight:700; color:#f0ebe0; margin:2rem 0 1rem;
+/* ── Force markdown text inside panels to be white ── */
+.report-panel p, .report-panel li, .report-panel h1,
+.report-panel h2, .report-panel h3, .report-panel h4 {
+    color: #ffffff !important;
 }
+.feedback-panel p, .feedback-panel li, .feedback-panel h1,
+.feedback-panel h2, .feedback-panel h3, .feedback-panel h4 {
+    color: #ffffff !important;
+}
+
+/* ── Section heading ── */
+.section-heading {
+    font-family:'Syne',sans-serif; font-size:1.4rem;
+    font-weight:700; color:#ffffff; margin:2rem 0 1rem;
+}
+
+/* ── Try chips ── */
+.chip {
+    display:inline-block;
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:6px; padding:0.25rem 0.8rem;
+    font-size:0.8rem; color:#cccccc;
+    margin-right:0.4rem; margin-top:0.3rem;
+}
+
 .notice {
     font-family:'DM Mono',monospace; font-size:0.72rem;
-    color:#605850; text-align:center; margin-top:3rem; letter-spacing:0.08em;
+    color:#555555; text-align:center; margin-top:3rem; letter-spacing:0.08em;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -186,7 +213,7 @@ def step_card(num, title, state, desc=""):
             <span class="step-title">{title}</span>
             <span class="step-status {cls}">{label}</span>
         </div>
-        {"<div style='font-size:0.82rem;color:#706860;margin-top:0.3rem;'>"+desc+"</div>" if desc else ""}
+        <div class="step-desc">{desc}</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -196,6 +223,7 @@ for key in ("results", "running", "done"):
         st.session_state[key] = {} if key == "results" else False
 
 
+# ── Hero ──
 st.markdown("""
 <div class="hero">
     <div class="hero-eyebrow">Multi-Agent AI System</div>
@@ -220,6 +248,15 @@ with col_input:
     )
     run_btn = st.button("⚡  Run Research Pipeline", use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("""
+    <div style="margin-top:0.5rem;">
+        <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:#666;letter-spacing:0.1em;">TRY →</span>
+        <span class="chip">LLM agents 2025</span>
+        <span class="chip">CRISPR gene editing</span>
+        <span class="chip">Fusion energy progress</span>
+    </div>
+    """, unsafe_allow_html=True)
 
 with col_pipeline:
     st.markdown('<div class="section-heading">Pipeline</div>', unsafe_allow_html=True)
