@@ -28,6 +28,22 @@ html, body, [class*="css"] {
 #MainMenu, footer, header { visibility: hidden; }
 .block-container { padding: 2rem 3rem 4rem; max-width: 1200px; }
 
+/* ── Force ALL markdown text to bright white ── */
+.stMarkdown, .stMarkdown p, .stMarkdown li,
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4,
+.stMarkdown strong, .stMarkdown em,
+div[data-testid="stMarkdownContainer"] p,
+div[data-testid="stMarkdownContainer"] li,
+div[data-testid="stMarkdownContainer"] h1,
+div[data-testid="stMarkdownContainer"] h2,
+div[data-testid="stMarkdownContainer"] h3,
+div[data-testid="stMarkdownContainer"] h4,
+div[data-testid="stMarkdownContainer"] strong,
+div[data-testid="stMarkdownContainer"] em,
+div[data-testid="stMarkdownContainer"] a {
+    color: #ffffff !important;
+}
+
 /* ── Hero ── */
 .hero { text-align: center; padding: 3.5rem 0 2.5rem; }
 .hero-eyebrow {
@@ -94,13 +110,18 @@ html, body, [class*="css"] {
     background: linear-gradient(135deg, #ff8c32 0%, #ff5a1a 100%) !important;
     color: #000000 !important;
     font-family: 'Syne', sans-serif !important;
-    font-weight: 700 !important; font-size: 0.95rem !important;
-    border: none !important; border-radius: 10px !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    border: none !important;
+    border-radius: 10px !important;
     padding: 0.7rem 2.2rem !important;
     box-shadow: 0 4px 20px rgba(255,140,50,0.3) !important;
     width: 100%;
 }
-.stButton > button:hover { transform: translateY(-2px) !important; opacity: 0.95 !important; }
+.stButton > button:hover {
+    transform: translateY(-2px) !important;
+    opacity: 0.95 !important;
+}
 
 /* ── Step cards ── */
 .step-card {
@@ -121,7 +142,7 @@ html, body, [class*="css"] {
 .step-header { display:flex; align-items:center; gap:0.8rem; margin-bottom:0.4rem; }
 .step-num    { font-family:'DM Mono',monospace; font-size:0.7rem; color:#ff8c32; font-weight:600; }
 .step-title  { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:#ffffff; }
-.step-desc   { font-size:0.85rem; color:#aaaaaa; margin-top:0.2rem; }
+.step-desc   { font-size:0.85rem; color:#bbbbbb; margin-top:0.2rem; }
 .step-status { margin-left:auto; font-family:'DM Mono',monospace; font-size:0.7rem; font-weight:600; }
 .status-waiting { color: #666666; }
 .status-running { color: #ff8c32; }
@@ -142,7 +163,7 @@ html, body, [class*="css"] {
 }
 .result-content {
     font-size:0.92rem; line-height:1.8;
-    color:#dddddd; white-space:pre-wrap;
+    color:#ffffff; white-space:pre-wrap;
 }
 
 /* ── Report & Feedback panels ── */
@@ -164,23 +185,21 @@ html, body, [class*="css"] {
 .panel-label.orange { color:#ff8c32; border-bottom:1px solid rgba(255,140,50,0.2); }
 .panel-label.green  { color:#50c878; border-bottom:1px solid rgba(80,200,120,0.2); }
 
-/* ── Force markdown text inside panels to be white ── */
+/* ── Force text inside report and feedback panels to white ── */
 .report-panel p, .report-panel li, .report-panel h1,
-.report-panel h2, .report-panel h3, .report-panel h4 {
-    color: #ffffff !important;
-}
+.report-panel h2, .report-panel h3, .report-panel h4,
+.report-panel strong, .report-panel em, .report-panel a,
 .feedback-panel p, .feedback-panel li, .feedback-panel h1,
-.feedback-panel h2, .feedback-panel h3, .feedback-panel h4 {
+.feedback-panel h2, .feedback-panel h3, .feedback-panel h4,
+.feedback-panel strong, .feedback-panel em, .feedback-panel a {
     color: #ffffff !important;
 }
 
-/* ── Section heading ── */
 .section-heading {
     font-family:'Syne',sans-serif; font-size:1.4rem;
     font-weight:700; color:#ffffff; margin:2rem 0 1rem;
 }
 
-/* ── Try chips ── */
 .chip {
     display:inline-block;
     background:rgba(255,255,255,0.07);
@@ -188,6 +207,42 @@ html, body, [class*="css"] {
     border-radius:6px; padding:0.25rem 0.8rem;
     font-size:0.8rem; color:#cccccc;
     margin-right:0.4rem; margin-top:0.3rem;
+}
+
+/* ── Expander ── */
+details summary {
+    color: #ffffff !important;
+    font-family: 'DM Mono', monospace !important;
+    font-size: 0.8rem !important;
+}
+
+/* ── Download button ── */
+div[data-testid="stDownloadButton"] button {
+    background: rgba(255,255,255,0.08) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    border-radius: 8px !important;
+    font-family: 'DM Mono', monospace !important;
+    font-size: 0.8rem !important;
+    padding: 0.5rem 1.2rem !important;
+    width: auto !important;
+}
+div[data-testid="stDownloadButton"] button:hover {
+    background: rgba(255,255,255,0.15) !important;
+    border-color: rgba(255,255,255,0.35) !important;
+}
+
+/* ── Spinner text ── */
+div[data-testid="stSpinner"] p {
+    color: #ff8c32 !important;
+}
+
+/* ── Warning box ── */
+div[data-testid="stAlert"] {
+    background: rgba(255,140,50,0.1) !important;
+    border: 1px solid rgba(255,140,50,0.3) !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
 }
 
 .notice {
@@ -198,6 +253,7 @@ html, body, [class*="css"] {
 """, unsafe_allow_html=True)
 
 
+# ── Helper: step card ─────────────────────────────────────────────────────────
 def step_card(num, title, state, desc=""):
     status_map = {
         "waiting": ("WAITING",   "status-waiting"),
@@ -218,12 +274,13 @@ def step_card(num, title, state, desc=""):
     """, unsafe_allow_html=True)
 
 
+# ── Session state ─────────────────────────────────────────────────────────────
 for key in ("results", "running", "done"):
     if key not in st.session_state:
         st.session_state[key] = {} if key == "results" else False
 
 
-# ── Hero ──
+# ── Hero ──────────────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="hero">
     <div class="hero-eyebrow">Multi-Agent AI System</div>
@@ -237,6 +294,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+# ── Layout ────────────────────────────────────────────────────────────────────
 col_input, col_spacer, col_pipeline = st.columns([5, 0.5, 4])
 
 with col_input:
@@ -277,6 +335,7 @@ with col_pipeline:
     step_card("04", "Critic Chain", s("critic"), "Reviews & scores the report")
 
 
+# ── Run pipeline ──────────────────────────────────────────────────────────────
 if run_btn:
     if not topic.strip():
         st.warning("Please enter a research topic first.")
@@ -332,6 +391,7 @@ if st.session_state.running and not st.session_state.done:
     st.rerun()
 
 
+# ── Results ───────────────────────────────────────────────────────────────────
 r = st.session_state.results
 
 if r:
@@ -383,6 +443,7 @@ if r:
         st.markdown("</div>", unsafe_allow_html=True)
 
 
+# ── Footer ────────────────────────────────────────────────────────────────────
 st.markdown(
     '<div class="notice">ResearchMind · Powered by Groq + LangChain · Built with Streamlit</div>',
     unsafe_allow_html=True
