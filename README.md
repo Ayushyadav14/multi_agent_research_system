@@ -24,7 +24,8 @@ Conducting in-depth research on any topic is time-consuming and fragmented — y
 
 ## 🎥 Demo
 
-> *(Add a GIF or screenshot of your app here after deployment)*
+> <img width="2398" height="1568" alt="image" src="https://github.com/user-attachments/assets/64d2a45a-d01f-4bfa-913a-c330fb610976" />
+
 
 ---
 
