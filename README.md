@@ -7,7 +7,7 @@
 ![Groq](https://img.shields.io/badge/Groq-LLaMA_3.3_70B-orange?style=for-the-badge)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.35+-red?style=for-the-badge&logo=streamlit&logoColor=white)
 
-**A fully autonomous multi-agent AI system that searches the web, scrapes content, writes structured research reports, and critiques them — all in one pipeline.**
+**A fully autonomous multi-agent AI research system that searches the web, scrapes content, writes structured research reports, and critiques them — all in one pipeline.**
 
 🔗 **Live Demo:** [multiagentresearchsystem-4k4lzlhioy43pvc9awelbr.streamlit.app](https://multiagentresearchsystem-4k4lzlhioy43pvc9awelbr.streamlit.app/)
 
@@ -36,22 +36,22 @@ User Input (Topic)
        │
        ▼
 ┌─────────────────┐
-│  Search Agent   │  ── Uses Tavily API to find top 5 relevant web sources
+│  Search Agent   │  ── Calls Tavily API directly to find top 5 relevant web sources
 └────────┬────────┘
          │
          ▼
 ┌─────────────────┐
-│  Reader Agent   │  ── Scrapes the most relevant URL using BeautifulSoup
+│  Reader Agent   │  ── Scrapes the most relevant URL directly using BeautifulSoup
 └────────┬────────┘
          │
          ▼
 ┌─────────────────┐
-│  Writer Chain   │  ── Synthesizes research into a structured report (LCEL)
+│  Writer Chain   │  ── Groq LLM synthesizes research into a structured report (LCEL)
 └────────┬────────┘
          │
          ▼
 ┌─────────────────┐
-│  Critic Chain   │  ── Reviews and scores the report with feedback (LCEL)
+│  Critic Chain   │  ── Groq LLM reviews and scores the report with feedback (LCEL)
 └─────────────────┘
          │
          ▼
@@ -62,7 +62,7 @@ User Input (Topic)
 
 ## ✨ Features
 
-- 🔍 **Search Agent** — Autonomously searches the web using Tavily and retrieves top 5 sources with titles, URLs, and snippets
+- 🔍 **Search Agent** — Calls Tavily API directly to retrieve top 5 sources with titles, URLs, and snippets
 - 📄 **Reader Agent** — Picks the most relevant URL and scrapes clean readable content using BeautifulSoup
 - ✍️ **Writer Chain** — Uses LCEL pipeline (`prompt | llm | StrOutputParser`) to write a structured report with Introduction, Key Findings, Conclusion, and Sources
 - 🧐 **Critic Chain** — Reviews the report and gives a score out of 10 with Strengths and Areas to Improve
@@ -77,10 +77,9 @@ User Input (Topic)
 | Layer | Technology |
 |---|---|
 | LLM | Llama 3.3 70B via Groq API (Free) |
-| Agent Framework | LangGraph ReAct Agents |
 | Pipeline | LCEL (LangChain Expression Language) with Runnables |
-| Web Search Tool | Tavily API |
-| Web Scraping Tool | BeautifulSoup4 + Requests |
+| Web Search | Tavily API (direct call) |
+| Web Scraping | BeautifulSoup4 + Requests (direct call) |
 | Frontend | Streamlit |
 | Environment | python-dotenv |
 
@@ -164,23 +163,23 @@ Open your browser at `http://localhost:8501`
 
 ---
 
-## 🤖 How the Agents Work
+## 🤖 How the Pipeline Works
 
-### Agent 1 — Search Agent
-Uses the `web_search` tool (powered by Tavily) to find the most recent and reliable information. Returns titles, URLs, and snippets from the top 5 results.
+### Step 1 — Search Agent
+Calls the Tavily API directly to find the most recent and reliable information. Returns titles, URLs, and snippets from the top 5 results. No LLM involved — fast and reliable.
 
-### Agent 2 — Reader Agent
-Uses the `scrape_url` tool (powered by BeautifulSoup) to visit the most relevant URL from the search results and extract clean readable text for deeper analysis.
+### Step 2 — Reader Agent
+Extracts the most relevant URL from search results and scrapes it directly using BeautifulSoup. Returns clean readable text for deeper analysis. No LLM involved — zero tool-calling errors.
 
-### Agent 3 — Writer Chain (LCEL)
-Takes the combined search results and scraped content, and uses a structured prompt pipeline to write a detailed report:
+### Step 3 — Writer Chain (LCEL)
+Takes the combined search results and scraped content, and uses Groq LLM via a structured LCEL pipeline to write a detailed report:
 - Introduction
 - Key Findings (minimum 3 points)
 - Conclusion
 - Sources
 
-### Agent 4 — Critic Chain (LCEL)
-Reviews the final report and provides:
+### Step 4 — Critic Chain (LCEL)
+Groq LLM reviews the final report and provides:
 - A score out of 10
 - Strengths
 - Areas to Improve
@@ -204,7 +203,6 @@ langchain>=0.2.0
 langchain-core>=0.2.0
 langchain-community>=0.2.0
 langchain-groq>=0.1.0
-langgraph>=0.1.0
 tavily-python>=0.3.0
 beautifulsoup4>=4.12.0
 requests>=2.31.0
@@ -222,7 +220,7 @@ tenacity>=8.2.0
 ## ⚠️ Important Notes
 
 - The `.env` file is **not committed** to GitHub. Never share your API keys publicly.
-- Groq's free tier has rate limits. If you hit a limit, wait a minute and retry.
+- Groq's free tier has a daily token limit of 100,000 tokens. If you hit it, wait until midnight UTC for it to reset.
 - Tavily's free tier allows 1000 searches/month which is more than enough for personal use.
 
 ---

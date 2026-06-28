@@ -349,33 +349,28 @@ if st.session_state.running and not st.session_state.done:
     results = {}
     topic_val = st.session_state.topic_input
 
-    # Step 1 - Search
+    # Step 1 - Search (direct Tavily call)
     with st.spinner("🔍  Search Agent is working…"):
-        search_agent = build_search_agent()
-        sr = search_agent.invoke({
-            "messages": [("user", f"Find recent, reliable and detailed information about: {topic_val}")]
-        })
-        results["search"] = sr["messages"][-1].content
+        import re
+        search_fn = build_search_agent()
+        results["search"] = search_fn(f"Find recent, reliable and detailed information about: {topic_val}")
         st.session_state.results = dict(results)
 
-    # Step 2 - Reader
+    # Step 2 - Reader (direct BeautifulSoup scrape)
     with st.spinner("📄  Reader Agent is scraping top resources…"):
-        reader_agent = build_reader_agent()
-        rr = reader_agent.invoke({
-            "messages": [("user",
-                f"Based on the following search results about '{topic_val}', "
-                f"pick the most relevant URL and scrape it for deeper content.\n\n"
-                f"Search Results:\n{results['search'][:800]}"
-            )]
-        })
-        results["reader"] = rr["messages"][-1].content
+        urls = re.findall(r'URL: (https?://\S+)', results["search"])
+        reader_fn = build_reader_agent()
+        if urls:
+            results["reader"] = reader_fn(urls[0])
+        else:
+            results["reader"] = "No URL found to scrape."
         st.session_state.results = dict(results)
 
     # Step 3 - Writer
     with st.spinner("✍️  Writer is drafting the report…"):
         research_combined = (
             f"SEARCH RESULTS:\n{results['search']}\n\n"
-            f"DETAILED SCRAPED CONTENT:\n{results['reader']}"
+            f"DETAILED SCRAPED CONTENT:\n{results['reader'][:2000]}"
         )
         results["writer"] = writer_chain.invoke({
             "topic": topic_val,
