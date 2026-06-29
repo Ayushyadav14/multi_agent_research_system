@@ -1,13 +1,13 @@
-# 🔬 ResearchMind — Multi-Agent AI Research System
+# 🧠 IntelliSearch — AI-Powered Research Engine
 
 <div align="center">
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-0.2+-green?style=for-the-badge&logo=chainlink&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq-LLaMA_3.3_70B-orange?style=for-the-badge)
+![Groq](https://img.shields.io/badge/Groq-LLaMA_3.3_70B-blueviolet?style=for-the-badge)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.35+-red?style=for-the-badge&logo=streamlit&logoColor=white)
 
-**A fully autonomous multi-agent AI research system that searches the web, scrapes content, writes structured research reports, and critiques them — all in one pipeline.**
+**A fully autonomous AI research engine that searches the web, scrapes sources, writes structured research reports, and critiques them — all in one seamless pipeline.**
 
 🔗 **Live Demo:** [multiagentresearchsystem-4k4lzlhioy43pvc9awelbr.streamlit.app](https://multiagentresearchsystem-4k4lzlhioy43pvc9awelbr.streamlit.app/)
 
@@ -17,15 +17,17 @@
 
 ## 📌 Problem Statement
 
-Conducting in-depth research on any topic is time-consuming and fragmented — you have to search multiple sources, read through pages, synthesize information, and then write a structured report. **ResearchMind automates this entire workflow** using four specialized AI agents that collaborate in a pipeline to deliver a polished, cited research report in minutes.
+Conducting in-depth research on any topic is time-consuming and fragmented — you have to search multiple sources, read through pages, synthesize information, and then write a structured report. **IntelliSearch automates this entire workflow** using a 4-step AI pipeline that delivers a polished, cited research report in minutes.
 
 ---
 
 ## 🎥 Demo
 
 <div align="center">
-  <img width="800" alt="ResearchMind Demo" src="https://github.com/user-attachments/assets/64d2a45a-d01f-4bfa-913a-c330fb610976" />
+  <img width="800" alt="IntelliSearch Demo" src="https://github.com/user-attachments/assets/ADD-YOUR-NEW-SCREENSHOT-URL-HERE" />
 </div>
+
+> 📸 To update the screenshot: drag and drop your new screenshot into any GitHub issue textbox → copy the image URL it generates → paste it above replacing `ADD-YOUR-NEW-SCREENSHOT-URL-HERE`
 
 ---
 
@@ -67,7 +69,7 @@ User Input (Topic)
 - ✍️ **Writer Chain** — Uses LCEL pipeline (`prompt | llm | StrOutputParser`) to write a structured report with Introduction, Key Findings, Conclusion, and Sources
 - 🧐 **Critic Chain** — Reviews the report and gives a score out of 10 with Strengths and Areas to Improve
 - ⬇️ **Download Report** — Export the final report as a `.md` file
-- 🎨 **Beautiful Dark UI** — Custom Streamlit UI with real-time pipeline status indicators
+- 🎨 **Beautiful Dark UI** — Custom purple-themed Streamlit UI with real-time pipeline status indicators
 - ⚡ **100% Free** — Powered by Groq (free tier) and Tavily (free tier), no OpenAI credits needed
 
 ---
@@ -156,8 +158,8 @@ Open your browser at `http://localhost:8501`
 ## 🖥️ Usage
 
 1. Enter any research topic in the input box (e.g. *"Impact of AI on healthcare 2025"*)
-2. Click **⚡ Run Research Pipeline**
-3. Watch all 4 agents work in real-time
+2. Click **🧠 Run IntelliSearch**
+3. Watch all 4 pipeline steps run in real-time
 4. Read the full structured report with key findings and sources
 5. Download the report as a `.md` file
 
@@ -166,7 +168,7 @@ Open your browser at `http://localhost:8501`
 ## 🤖 How the Pipeline Works
 
 ### Step 1 — Search Agent
-Calls the Tavily API directly to find the most recent and reliable information. Returns titles, URLs, and snippets from the top 5 results. No LLM involved — fast and reliable.
+Calls the Tavily API directly to find the most recent and reliable information. Returns titles, URLs, and snippets from the top 5 results. No LLM involved — fast and always reliable.
 
 ### Step 2 — Reader Agent
 Extracts the most relevant URL from search results and scrapes it directly using BeautifulSoup. Returns clean readable text for deeper analysis. No LLM involved — zero tool-calling errors.
