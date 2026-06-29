@@ -24,10 +24,8 @@ Conducting in-depth research on any topic is time-consuming and fragmented — y
 ## 🎥 Demo
 
 <div align="center">
-  <img width="800" alt="IntelliSearch Demo" src="https://github.com/user-attachments/assets/ADD-YOUR-NEW-SCREENSHOT-URL-HERE" />
+  <img width="800" alt="IntelliSearch Demo" src="https://github.com/user-attachments/assets/3cfdd460-6ea5-4fd8-af10-dd36b4c28a4c" />
 </div>
-
-> 📸 To update the screenshot: drag and drop your new screenshot into any GitHub issue textbox → copy the image URL it generates → paste it above replacing `ADD-YOUR-NEW-SCREENSHOT-URL-HERE`
 
 ---
 
