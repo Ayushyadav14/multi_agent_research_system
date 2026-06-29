@@ -3,8 +3,8 @@ import time
 from agents import build_reader_agent, build_search_agent, writer_chain, critic_chain
 
 st.set_page_config(
-    page_title="ResearchMind · AI Research Agent",
-    page_icon="🔬",
+    page_title="IntelliSearch · AI Research Agent",
+    page_icon="🧠",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -21,11 +21,15 @@ html, body, [class*="css"] {
 .stApp {
     background: #0a0a0f;
     background-image:
-        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(255,140,50,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 110%, rgba(255,80,30,0.08) 0%, transparent 55%);
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(124,58,237,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.1) 0%, transparent 55%);
 }
 
 #MainMenu, footer, header { visibility: hidden; }
+.stApp > header { display: none !important; }
+div[data-testid="stDecoration"] { display: none !important; }
+div[data-testid="stStatusWidget"] { display: none !important; }
+div[data-testid="stToolbar"] { display: none !important; }
 .block-container { padding: 2rem 3rem 4rem; max-width: 1200px; }
 
 /* ── Force ALL markdown text to bright white ── */
@@ -50,7 +54,7 @@ div[data-testid="stMarkdownContainer"] a {
     font-family: 'DM Mono', monospace;
     font-size: 0.7rem; font-weight: 500;
     letter-spacing: 0.25em; text-transform: uppercase;
-    color: #ff8c32; margin-bottom: 1rem;
+    color: #7c3aed; margin-bottom: 1rem;
 }
 .hero h1 {
     font-family: 'Syne', sans-serif;
@@ -59,7 +63,7 @@ div[data-testid="stMarkdownContainer"] a {
     letter-spacing: -0.03em;
     color: #ffffff; margin: 0 0 1rem;
 }
-.hero h1 span { color: #ff8c32; }
+.hero h1 span { color: #7c3aed; }
 .hero-sub {
     font-size: 1.05rem; font-weight: 300;
     color: #cccccc; max-width: 520px;
@@ -68,20 +72,20 @@ div[data-testid="stMarkdownContainer"] a {
 
 .divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,140,50,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(124,58,237,0.3), transparent);
     margin: 2rem 0;
 }
 
 .input-card {
     background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,140,50,0.15);
+    border: 1px solid rgba(124,58,237,0.15);
     border-radius: 16px; padding: 2rem 2.5rem; margin-bottom: 2rem;
 }
 
 /* ── Input: white background, black text ── */
 .stTextInput > div > div > input {
     background: #ffffff !important;
-    border: 2px solid rgba(255,140,50,0.6) !important;
+    border: 2px solid rgba(124,58,237,0.6) !important;
     border-radius: 10px !important;
     color: #000000 !important;
     font-size: 1rem !important;
@@ -89,8 +93,8 @@ div[data-testid="stMarkdownContainer"] a {
     font-family: 'DM Sans', sans-serif !important;
 }
 .stTextInput > div > div > input:focus {
-    border-color: #ff8c32 !important;
-    box-shadow: 0 0 0 3px rgba(255,140,50,0.25) !important;
+    border-color: #7c3aed !important;
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.25) !important;
 }
 .stTextInput > div > div > input::placeholder {
     color: #888888 !important;
@@ -101,13 +105,13 @@ div[data-testid="stMarkdownContainer"] a {
     font-size: 0.72rem !important;
     letter-spacing: 0.15em !important;
     text-transform: uppercase !important;
-    color: #ff8c32 !important;
+    color: #7c3aed !important;
     font-weight: 500 !important;
 }
 
 /* ── Button ── */
 .stButton > button {
-    background: linear-gradient(135deg, #ff8c32 0%, #ff5a1a 100%) !important;
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%) !important;
     color: #000000 !important;
     font-family: 'Syne', sans-serif !important;
     font-weight: 700 !important;
@@ -115,7 +119,7 @@ div[data-testid="stMarkdownContainer"] a {
     border: none !important;
     border-radius: 10px !important;
     padding: 0.7rem 2.2rem !important;
-    box-shadow: 0 4px 20px rgba(255,140,50,0.3) !important;
+    box-shadow: 0 4px 20px rgba(124,58,237,0.3) !important;
     width: 100%;
 }
 .stButton > button:hover {
@@ -130,22 +134,22 @@ div[data-testid="stMarkdownContainer"] a {
     border-radius: 14px; padding: 1.5rem 1.8rem;
     margin-bottom: 1.2rem; position: relative; overflow: hidden;
 }
-.step-card.active { border-color: rgba(255,140,50,0.6); background: rgba(255,140,50,0.08); }
+.step-card.active { border-color: rgba(124,58,237,0.6); background: rgba(124,58,237,0.08); }
 .step-card.done   { border-color: rgba(80,200,120,0.5); background: rgba(80,200,120,0.06); }
 .step-card::before {
     content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
     border-radius:14px 0 0 14px; background:rgba(255,255,255,0.08);
 }
-.step-card.active::before { background: #ff8c32; }
+.step-card.active::before { background: #7c3aed; }
 .step-card.done::before   { background: #50c878; }
 
 .step-header { display:flex; align-items:center; gap:0.8rem; margin-bottom:0.4rem; }
-.step-num    { font-family:'DM Mono',monospace; font-size:0.7rem; color:#ff8c32; font-weight:600; }
+.step-num    { font-family:'DM Mono',monospace; font-size:0.7rem; color:#7c3aed; font-weight:600; }
 .step-title  { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:#ffffff; }
 .step-desc   { font-size:0.85rem; color:#bbbbbb; margin-top:0.2rem; }
 .step-status { margin-left:auto; font-family:'DM Mono',monospace; font-size:0.7rem; font-weight:600; }
 .status-waiting { color: #666666; }
-.status-running { color: #ff8c32; }
+.status-running { color: #7c3aed; }
 .status-done    { color: #50c878; }
 
 /* ── Result panels ── */
@@ -157,9 +161,9 @@ div[data-testid="stMarkdownContainer"] a {
 }
 .result-panel-title {
     font-family:'DM Mono',monospace; font-size:0.72rem;
-    letter-spacing:0.2em; text-transform:uppercase; color:#ff8c32;
+    letter-spacing:0.2em; text-transform:uppercase; color:#7c3aed;
     margin-bottom:1rem; padding-bottom:0.7rem;
-    border-bottom:1px solid rgba(255,140,50,0.2);
+    border-bottom:1px solid rgba(124,58,237,0.2);
 }
 .result-content {
     font-size:0.92rem; line-height:1.8;
@@ -169,7 +173,7 @@ div[data-testid="stMarkdownContainer"] a {
 /* ── Report & Feedback panels ── */
 .report-panel {
     background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,140,50,0.3);
+    border: 1px solid rgba(124,58,237,0.3);
     border-radius: 16px; padding: 2rem 2.5rem; margin-top: 1rem;
 }
 .feedback-panel {
@@ -182,7 +186,7 @@ div[data-testid="stMarkdownContainer"] a {
     letter-spacing:0.2em; text-transform:uppercase;
     margin-bottom:1.2rem; padding-bottom:0.7rem; font-weight:600;
 }
-.panel-label.orange { color:#ff8c32; border-bottom:1px solid rgba(255,140,50,0.2); }
+.panel-label.purple { color:#7c3aed; border-bottom:1px solid rgba(124,58,237,0.2); }
 .panel-label.green  { color:#50c878; border-bottom:1px solid rgba(80,200,120,0.2); }
 
 /* ── Force text inside panels to white ── */
@@ -234,13 +238,13 @@ div[data-testid="stDownloadButton"] button:hover {
 
 /* ── Spinner ── */
 div[data-testid="stSpinner"] p {
-    color: #ff8c32 !important;
+    color: #7c3aed !important;
 }
 
 /* ── Warning ── */
 div[data-testid="stAlert"] {
-    background: rgba(255,140,50,0.1) !important;
-    border: 1px solid rgba(255,140,50,0.3) !important;
+    background: rgba(124,58,237,0.1) !important;
+    border: 1px solid rgba(124,58,237,0.3) !important;
     color: #ffffff !important;
     border-radius: 10px !important;
 }
@@ -283,11 +287,11 @@ for key in ("results", "running", "done"):
 # ── Hero ──────────────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="hero">
-    <div class="hero-eyebrow">Multi-Agent AI System</div>
-    <h1>Research<span>Mind</span></h1>
+    <div class="hero-eyebrow">AI-Powered Research Engine</div>
+    <h1>Intelli<span>Search</span></h1>
     <p class="hero-sub">
-        Four specialized AI agents collaborate — searching, scraping, writing,
-        and critiquing — to deliver a polished research report on any topic.
+        One smart research engine — searches the web, reads sources, writes reports,
+        and critiques them — delivering deep insights on any topic instantly.
     </p>
 </div>
 <div class="divider"></div>
@@ -304,7 +308,7 @@ with col_input:
         placeholder="e.g. Quantum computing breakthroughs in 2025",
         key="topic_input",
     )
-    run_btn = st.button("⚡  Run Research Pipeline", use_container_width=True)
+    run_btn = st.button("🧠  Run IntelliSearch", use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown("""
@@ -420,7 +424,7 @@ if r:
     if "writer" in r:
         st.markdown(
             '<div class="report-panel">'
-            '<div class="panel-label orange">📝 Final Research Report</div>',
+            '<div class="panel-label purple">📝 Final Research Report</div>',
             unsafe_allow_html=True
         )
         st.markdown(r["writer"])
@@ -428,7 +432,7 @@ if r:
         st.download_button(
             label="⬇  Download Report (.md)",
             data=r["writer"],
-            file_name=f"research_report_{int(time.time())}.md",
+            file_name=f"intellisearch_report_{int(time.time())}.md",
             mime="text/markdown",
         )
 
@@ -444,6 +448,6 @@ if r:
 
 # ── Footer ────────────────────────────────────────────────────────────────────
 st.markdown(
-    '<div class="notice">ResearchMind · Powered by Groq + LangChain · Built with Streamlit</div>',
+    '<div class="notice">IntelliSearch · Powered by Groq + LangChain · Built with Streamlit</div>',
     unsafe_allow_html=True
 )
