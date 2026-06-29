@@ -1,4 +1,8 @@
+<div align="center">
+
 # 🧠 IntelliSearch — AI-Powered Research Engine
+
+</div>
 
 <div align="center">
 
